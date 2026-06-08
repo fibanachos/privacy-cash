@@ -16,8 +16,8 @@ const deployKeypairPath = path.join(anchorDirPath, 'deploy-keypair.json');
 const keypairJson = JSON.parse(readFileSync(deployKeypairPath, 'utf-8'));
 const user = Keypair.fromSecretKey(Uint8Array.from(keypairJson));
 
-const PROGRAM_ID = new PublicKey('9fhQBbumKEFuXtMBDw8AaQyAjCorLGJQiS3skWZdQyQD');
-const FEE_RECIPIENT_ACCOUNT = new PublicKey('97rSMQUukMDjA7PYErccyx7ZxbHvSDaeXp2ig5BwSrTf');
+const PROGRAM_ID = new PublicKey('CASHcHkM2PHpCHaEhksmQrv6C9YRu3csxY2eyKKydHnv');
+const FEE_RECIPIENT_ACCOUNT = new PublicKey('1nc1nerator11111111111111111111111111111111');
 const RELAYER = new PublicKey('AF8VuwCncKd5ZBnLYYnMjqh4vLch8mjqE75sFe5ZjRFW');
 
 // USDT mint address on mainnet
@@ -26,8 +26,8 @@ const USDT_MINT = new PublicKey('Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB');
 // Existing ALT to extend
 const ALT_ADDRESS = new PublicKey('HEN49U2ySJ85Vc78qprSW9y6mFDhs1NczRxyppNHjofe');
 
-// Configure connection to Solana mainnet-beta
-const connection = new Connection('https://rorie-6cdtt5-fast-mainnet.helius-rpc.com', 'confirmed');
+// Configure connection to Cookie Chain
+const connection = new Connection('https://rpc.cookiescan.io', 'confirmed');
 
 async function main() {
   console.log('Extending ALT with USDT addresses...\n');

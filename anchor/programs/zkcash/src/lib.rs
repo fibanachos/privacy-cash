@@ -6,11 +6,12 @@ use ark_bn254::Fr;
 use anchor_spl::token::{self, Token, TokenAccount, Mint, Transfer as SplTransfer};
 use anchor_spl::associated_token::AssociatedToken;
 
+// Cookie Chain fork program ID (keypair: anchor/zkcash-keypair.json).
 #[cfg(any(feature = "devnet", feature = "localnet", feature = "localnet-mint-checked"))]
-declare_id!("ATZj4jZ4FFzkvAcvk27DW9GRkgSbFnHo49fKKPQXU7VS");
+declare_id!("CASHcHkM2PHpCHaEhksmQrv6C9YRu3csxY2eyKKydHnv");
 
 #[cfg(not(any(feature = "devnet", feature = "localnet", feature = "localnet-mint-checked")))]
-declare_id!("9fhQBbumKEFuXtMBDw8AaQyAjCorLGJQiS3skWZdQyQD");
+declare_id!("CASHcHkM2PHpCHaEhksmQrv6C9YRu3csxY2eyKKydHnv");
 
 pub mod merkle_tree;
 pub mod utils;
@@ -26,10 +27,12 @@ const MERKLE_TREE_HEIGHT: u8 = 26;
 pub const ADMIN_PUBKEY: Option<Pubkey> = None;
 
 #[cfg(all(feature = "devnet", not(any(feature = "localnet", feature = "localnet-mint-checked", test))))]
-pub const ADMIN_PUBKEY: Option<Pubkey> = Some(pubkey!("97rSMQUukMDjA7PYErccyx7ZxbHvSDaeXp2ig5BwSrTf"));
+pub const ADMIN_PUBKEY: Option<Pubkey> = Some(pubkey!("HGSGbiM3tMvbX8cxitEgzbQv53M4rFcsE1gn7fvrHrkN"));
 
+// Cookie Chain admin authority — same key used by the damm-v2 fork
+// (keypair held locally at damm-v2/keys/local/upgrade-authority-live.json).
 #[cfg(not(any(feature = "localnet", feature = "localnet-mint-checked", feature = "devnet", test)))]
-pub const ADMIN_PUBKEY: Option<Pubkey> = Some(pubkey!("AWexibGxNFKTa1b5R5MN4PJr9HWnWRwf8EW9g8cLx3dM"));
+pub const ADMIN_PUBKEY: Option<Pubkey> = Some(pubkey!("HGSGbiM3tMvbX8cxitEgzbQv53M4rFcsE1gn7fvrHrkN"));
 
 #[cfg(any(feature = "localnet", test))]
 pub const ALLOW_ALL_SPL_TOKENS: bool = true;
@@ -48,16 +51,11 @@ pub const ALLOWED_TOKENS: &[Pubkey] = &[
     pubkey!("8wBeZG358JQxdsPUVaRJY1viRPkx8Auoh8NvpFscbQka") // jlWSOL
 ];
 
+// Cookie Chain fork: COOK (native) only — no SPL tokens are allowlisted.
+// The original Solana mainnet mints (USDC/USDT/ORE/…) do not exist on Cookie Chain.
+// To enable SPL support later, add real Cookie Chain mint addresses here.
 #[cfg(not(feature = "devnet"))]
-pub const ALLOWED_TOKENS: &[Pubkey] = &[
-    pubkey!("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"), // USDC
-    pubkey!("Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"), // USDT
-    pubkey!("oreoU2P8bN6jkk3jbaiVxYnG1dCXcYxwhwyK9jSybcp"), // ORE
-    pubkey!("A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS"), // ZEC
-    pubkey!("sTorERYB6xAZ1SSbwpK3zoK2EEwbBrc7TZAzg1uCGiH"), // stORE
-    pubkey!("9BEcn9aPEmhSPbPQeFGjidRiEKki46fVQDyPpSQXPA2D"), // jlUSDC
-    pubkey!("2uQsyo1fXXQkDtcpXnLofWy88PxcvnfH2L8FPSE62FVU") // jlWSOL
-];
+pub const ALLOWED_TOKENS: &[Pubkey] = &[];
 
 #[program]
 pub mod zkcash {
@@ -75,7 +73,7 @@ pub mod zkcash {
         tree_account.next_index = 0;
         tree_account.root_index = 0;
         tree_account.bump = ctx.bumps.tree_account;
-        tree_account.max_deposit_amount = 1_000_000_000_000; // 1000 SOL default limit
+        tree_account.max_deposit_amount = 1_000_000_000_000; // 1000 COOK default limit (9 decimals); change later via update_deposit_limit
         tree_account.height = MERKLE_TREE_HEIGHT; // Hardcoded height
         tree_account.root_history_size = 100; // Hardcoded root history size
 
@@ -89,7 +87,7 @@ pub mod zkcash {
         let global_config = &mut ctx.accounts.global_config;
         global_config.authority = ctx.accounts.authority.key();
         global_config.deposit_fee_rate = 0; // 0% - Free deposits
-        global_config.withdrawal_fee_rate = 25; // 0.25% (25 basis points)
+        global_config.withdrawal_fee_rate = 100; // 1% (100 basis points)
         global_config.fee_error_margin = 500; // 5% (500 basis points)
         global_config.bump = ctx.bumps.global_config;
         

@@ -8,7 +8,7 @@ import BN from 'bn.js';
 export const FIELD_SIZE = new BN('21888242871839275222246405745257275088548364400416034343698204186575808495617')
 
 // Fee recipient account for all transactions
-export const FEE_RECIPIENT_ACCOUNT = new PublicKey('97rSMQUukMDjA7PYErccyx7ZxbHvSDaeXp2ig5BwSrTf');
+export const FEE_RECIPIENT_ACCOUNT = new PublicKey('1nc1nerator11111111111111111111111111111111');
 
 // Tree configuration constants
 export const DEFAULT_TREE_HEIGHT = 26; // Default Merkle tree height (supports 2^26 = ~67M leaves)
@@ -17,13 +17,13 @@ export const DEFAULT_ROOT_HISTORY_SIZE = 100; // Default root history size
 dotenv.config();
 
 // Program ID for the zkcash program on devnet
-const PROGRAM_ID = new PublicKey('ATZj4jZ4FFzkvAcvk27DW9GRkgSbFnHo49fKKPQXU7VS');
+const PROGRAM_ID = new PublicKey('CASHcHkM2PHpCHaEhksmQrv6C9YRu3csxY2eyKKydHnv');
 
 // USDC mint address on devnet
 const USDC_MINT = new PublicKey('4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU');
 
-// Configure connection to Solana devnet
-const connection = new Connection('https://domini-i2gp2o-fast-devnet.helius-rpc.com', 'confirmed');
+// Configure connection to Cookie Chain
+const connection = new Connection('https://rpc.cookiescan.io', 'confirmed');
 
 /**
  * Example output:

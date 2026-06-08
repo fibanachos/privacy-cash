@@ -3,9 +3,9 @@ import bs58 from 'bs58';
 import * as crypto from 'crypto';
 import BN from 'bn.js';
 
-const PROGRAM_ID = new PublicKey('9fhQBbumKEFuXtMBDw8AaQyAjCorLGJQiS3skWZdQyQD');
+const PROGRAM_ID = new PublicKey('CASHcHkM2PHpCHaEhksmQrv6C9YRu3csxY2eyKKydHnv');
 const SQUAD_VAULT_ADDRESS = new PublicKey('AWexibGxNFKTa1b5R5MN4PJr9HWnWRwf8EW9g8cLx3dM');
-const connection = new Connection('https://api.mainnet-beta.solana.com', 'confirmed');
+const connection = new Connection('https://rpc.cookiescan.io', 'confirmed');
 
 // SPL Token Mint (USDC)
 const SPL_TOKEN_MINT = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');

@@ -13,3 +13,4 @@ anchor/test-ledger
 anchor/.yarn
 anchor/deploy-keypair.json
 anchor/zkcash-keypair.json
+anchor/buffer-keypair.json

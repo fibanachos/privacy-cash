@@ -6,13 +6,13 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-zkcash = "ATZj4jZ4FFzkvAcvk27DW9GRkgSbFnHo49fKKPQXU7VS"
+zkcash = "CASHcHkM2PHpCHaEhksmQrv6C9YRu3csxY2eyKKydHnv"
 
 [programs.devnet]
-zkcash = "ATZj4jZ4FFzkvAcvk27DW9GRkgSbFnHo49fKKPQXU7VS"
+zkcash = "CASHcHkM2PHpCHaEhksmQrv6C9YRu3csxY2eyKKydHnv"
 
 [programs.mainnet]
-zkcash = "9fhQBbumKEFuXtMBDw8AaQyAjCorLGJQiS3skWZdQyQD"
+zkcash = "CASHcHkM2PHpCHaEhksmQrv6C9YRu3csxY2eyKKydHnv"
 
 [registry]
 url = "https://api.apr.dev"

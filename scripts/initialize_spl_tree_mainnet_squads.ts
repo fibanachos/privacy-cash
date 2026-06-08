@@ -6,7 +6,7 @@ import BN from 'bn.js';
 import bs58 from 'bs58';
 
 // Program ID for the zkcash program on mainnet
-const PROGRAM_ID = new PublicKey('9fhQBbumKEFuXtMBDw8AaQyAjCorLGJQiS3skWZdQyQD');
+const PROGRAM_ID = new PublicKey('CASHcHkM2PHpCHaEhksmQrv6C9YRu3csxY2eyKKydHnv');
 
 // USDT mint address on mainnet
 const USDT_MINT = new PublicKey('Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB');
@@ -17,8 +17,8 @@ const MAX_DEPOSIT_AMOUNT = new BN(200_000_000_000);
 // Squad vault authority on mainnet
 const SQUAD_VAULT = new PublicKey('AWexibGxNFKTa1b5R5MN4PJr9HWnWRwf8EW9g8cLx3dM');
 
-// Configure connection to Solana mainnet-beta
-const connection = new Connection('https://rorie-6cdtt5-fast-mainnet.helius-rpc.com', 'confirmed');
+// Configure connection to Cookie Chain
+const connection = new Connection('https://rpc.cookiescan.io', 'confirmed');
 
 async function generateSquadsTransaction() {
   // Load keypair for building instruction

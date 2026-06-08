@@ -21,14 +21,14 @@ const deployKeypairPath = path.join(anchorDirPath, 'deploy-keypair.json');
 const keypairJson = JSON.parse(readFileSync(deployKeypairPath, 'utf-8'));
 const user = Keypair.fromSecretKey(Uint8Array.from(keypairJson));
 
-const PROGRAM_ID = new PublicKey('9fhQBbumKEFuXtMBDw8AaQyAjCorLGJQiS3skWZdQyQD');
-const FEE_RECIPIENT_ACCOUNT = new PublicKey('AWexibGxNFKTa1b5R5MN4PJr9HWnWRwf8EW9g8cLx3dM');
+const PROGRAM_ID = new PublicKey('CASHcHkM2PHpCHaEhksmQrv6C9YRu3csxY2eyKKydHnv');
+const FEE_RECIPIENT_ACCOUNT = new PublicKey('1nc1nerator11111111111111111111111111111111');
 const authority = new PublicKey('AWexibGxNFKTa1b5R5MN4PJr9HWnWRwf8EW9g8cLx3dM');
 const USDC_MINT = new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v');
 const RELAYER = new PublicKey('AF8VuwCncKd5ZBnLYYnMjqh4vLch8mjqE75sFe5ZjRFW');
 
-// Configure connection to Solana mainnet-beta
-const connection = new Connection('https://rorie-6cdtt5-fast-mainnet.helius-rpc.com', 'confirmed');
+// Configure connection to Cookie Chain
+const connection = new Connection('https://rpc.cookiescan.io', 'confirmed');
 
 /**
  * Create a new address lookup table
